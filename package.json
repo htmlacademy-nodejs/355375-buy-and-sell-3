@@ -1,0 +1,26 @@
+{
+  "name": "355375-buy-and-sell-3",
+  "version": "1.0.0",
+  "description": "Куплю. Продам",
+  "main": "./src/service/service.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "7.10.0",
+    "eslint-config-htmlacademy": "0.6.0"
+  },
+  "scripts": {
+    "start": "node ./src/service/service.js",
+    "test": "npm run eslint",
+    "eslint": "eslint --ext .js src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chel213/355375-buy-and-sell-3.git"
+  },
+  "author": "Дыба Алексей",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chel213/355375-buy-and-sell-3/issues"
+  },
+  "homepage": "https://github.com/Chel213/355375-buy-and-sell-3#readme"
+}
