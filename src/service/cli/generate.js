@@ -1,7 +1,7 @@
 'use strict';
 
-const {getRandomInt, shuffle} = require(`../../express/utils`);
 const fs = require(`fs`);
+const {getRandomInt, shuffle} = require(`../../utils`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
