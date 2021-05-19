@@ -42,6 +42,11 @@ const readContent = async (path)=>{
   }
 };
 
+const writeJsonFile = async (fileName, content)=>{
+  const json = JSON.stringify(content);
+  await writeFile(fileName, json);
+};
+
 const getPictureFileName = (value) => `item${value.toString().padStart(2, 0)}.jpg`;
 
 const generateOffers = (count, titles, categories, sentences) => (
@@ -68,10 +73,10 @@ module.exports = {
       console.info(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
       process.exit(ExitCode.error);
     }
-    const content = JSON.stringify(generateOffers(countOffer, titles, categories, sentences));
+    const offers = generateOffers(countOffer, titles, categories, sentences);
 
     try {
-      await writeFile(FILE_NAME, content);
+      await writeJsonFile(FILE_NAME, offers);
       console.info(chalk.green(`Operation success. File created.`));
       process.exit(ExitCode.success);
     } catch (e) {
