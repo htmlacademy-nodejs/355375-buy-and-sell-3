@@ -38,7 +38,7 @@ const readContent = async (path)=>{
     return content.split(`\n`);
   } catch (e) {
     console.error(chalk.red(e));
-    return [];
+    throw e;
   }
 };
 
@@ -63,19 +63,19 @@ const generateOffers = (count, titles, categories, sentences) => (
 module.exports = {
   name: `--generate`,
   async run(args) {
-    const sentences = await readContent(FILE_SENTENCES_PATH);
-    const titles = await readContent(FILE_TITLES_PATH);
-    const categories = await readContent(FILE_CATEGORIES_PATH);
-    const [count] = args;
-    const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
-
-    if (countOffer > MAX_COUNT) {
-      console.info(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
-      process.exit(ExitCode.error);
-    }
-    const offers = generateOffers(countOffer, titles, categories, sentences);
-
     try {
+      const sentences = await readContent(FILE_SENTENCES_PATH);
+      const titles = await readContent(FILE_TITLES_PATH);
+      const categories = await readContent(FILE_CATEGORIES_PATH);
+      const [count] = args;
+      const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
+
+      if (countOffer > MAX_COUNT) {
+        console.info(chalk.red(`Не больше ${MAX_COUNT} объявлений`));
+        process.exit(ExitCode.error);
+      }
+      const offers = generateOffers(countOffer, titles, categories, sentences);
+
       await writeJsonFile(FILE_NAME, offers);
       console.info(chalk.green(`Operation success. File created.`));
       process.exit(ExitCode.success);
