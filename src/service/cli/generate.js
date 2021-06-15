@@ -30,7 +30,7 @@ const PictureRestrict = {
 
 const readContent = async (path)=>{
   try {
-    const content = await readFile(path, `utf8`);
+    const content = (await readFile(path, `utf8`)).trim();
     return content.split(`\n`);
   } catch (e) {
     console.error(chalk.red(e));
