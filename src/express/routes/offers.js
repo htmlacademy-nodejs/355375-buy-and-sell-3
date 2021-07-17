@@ -5,23 +5,43 @@ const {Router} = require(`express`);
 const offersRoutes = new Router();
 
 offersRoutes.get(`/`, (req, res)=>{
-  res.send(`/offers`);
+  res.render(`errors/400`);
+});
+
+offersRoutes.get(`/category`, (req, res)=>{
+  res.render(`errors/400`);
 });
 
 offersRoutes.get(`/category/:id`, (req, res)=>{
-  res.send(`/offers/category/:id ${req.params.id}`);
+  res.render(`categories/category`, {
+    user: {
+      isAuth: true,
+    }
+  });
 });
 
 offersRoutes.get(`/add`, (req, res)=>{
-  res.send(`/offers/add`);
+  res.render(`tickets/new-ticket`, {
+    user: {
+      isAuth: true,
+    }
+  });
 });
 
 offersRoutes.get(`/edit/:id`, (req, res)=>{
-  res.send(`/offers/edit/:id ${req.params.id}`);
+  res.render(`tickets/ticket-edit`, {
+    user: {
+      isAuth: true,
+    }
+  });
 });
 
 offersRoutes.get(`/:id`, (req, res)=>{
-  res.send(`/offers/:id ${req.params.id}`);
+  res.render(`tickets/ticket`, {
+    user: {
+      isAuth: true,
+    }
+  });
 });
 
 module.exports = offersRoutes;
